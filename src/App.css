@@ -1,15 +1,18 @@
 .App {
+  margin-top: 15vh;
   text-align: center;
 }
 
 .App-logo {
   height: 40vmin;
+  max-height: 75px;
   pointer-events: none;
+  margin-right: 10pxx;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/*    animation: App-logo-spin infinite 20s linear;*/
   }
 }
 
@@ -22,6 +25,27 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+nav {
+    height: 10vh;
+    width: 100%;
+    left: 0;
+    right: 0;
+    position: fixed;
+    background-color: #87CEEB;
+}
+
+.navbar-brand {
+  flex: 1; /* Take up remaining space */
+  white-space: nowrap; /* Prevent line break */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Show ellipsis (...) for truncated text */
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
 }
 
 .App-link {
