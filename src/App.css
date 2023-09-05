@@ -7,7 +7,7 @@
   height: 40vmin;
   max-height: 75px;
   pointer-events: none;
-  margin-right: 10pxx;
+  margin-right: 10px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

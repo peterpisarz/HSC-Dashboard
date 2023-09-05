@@ -47,8 +47,8 @@ const ContractInteraction = ({ contractAddress, provider }) => {
 
   const handleWithdraw = async () => {
     try {
-      const client = provider.getSigner()
-      const tx = await contract.connect(client).withdraw();
+      const signer = provider.getSigner()
+      const tx = await contract.connect(signer).withdraw();
       await tx.wait();
       alert('Withdrawal successful');
       loadContractData();
