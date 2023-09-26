@@ -1,4 +1,5 @@
 import { ethers } from 'ethers'
+import { Button } from 'react-bootstrap';
 import logo from '../images/HollyStreetCryptoLogo.png'
 
 const Navbar = ({ account, setAccount }) => {
@@ -30,12 +31,13 @@ const Navbar = ({ account, setAccount }) => {
                     {account.slice(0, 5) + '...' + account.slice(38, 42)}
                 </a>
             ) : (
-                <button 
+                <Button 
+                    variant="primary"
                     onClick={connectHandler}
                     className="button nav-button btn-sm mx-4"
                 >
                     Connect Wallet
-                </button>
+                </Button>
             )}
         </nav>
 

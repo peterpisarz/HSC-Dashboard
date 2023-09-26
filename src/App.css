@@ -48,6 +48,11 @@ nav {
   align-items: center;
 }
 
+.card {
+  max-width: 800px; /* Set your desired maximum width here */
+  margin: 0 auto; /* Center the card horizontally */
+}
+
 .App-link {
   color: #61dafb;
 }

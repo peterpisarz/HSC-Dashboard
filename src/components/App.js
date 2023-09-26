@@ -13,7 +13,7 @@ function App() {
 
   const [total, setTotal] = useState(0)
   const [profit, setProfit] = useState(0)
-  const [totalSupply, setTotalSupply] = useState(3)
+  const [totalSupply, setTotalSupply] = useState(0)
   const [account, setAccount ] = useState(null)
   const [provider, setProvider] = useState(null)
   const [contract, setContract] = useState(null)
@@ -26,6 +26,7 @@ function App() {
     setProvider(provider)
 
     const network = await provider.getNetwork()
+    console.log(network)
     const contract = new ethers.Contract(contractAddress, LaPiscinaAbi.abi, provider)
     setContract(contract)
 
@@ -45,7 +46,7 @@ function App() {
 
     // Get contract balance
     const contractBalance = await provider.getBalance(contractAddress)
-    setBalance(ethers.formatEther(contractBalance.toString()))
+    setBalance(contractBalance)
 
     // Figure out if minting is live yet
     const allowMintingAfter = await contract.allowMintingAfter()
@@ -64,6 +65,7 @@ function App() {
   const handleWithdraw = async () => {
     console.log('Balance:', balance);
     console.log('Account:', account);
+
     try {
       if (balance === 0) {
         window.alert('Balance is zero. No funds to withdraw.');
@@ -92,9 +94,9 @@ function App() {
           <div class="card-body">
           <Row>
             <Col>
-              <h2 class="card-header" style={{ marginBottom: '10px' }}>NFT Campaign Status</h2>
+              <h2 class="card-header" style={{ marginBottom: '10px' }} >NFT Campaign Status</h2>
               { account!==owner ? (
-              <p>Account not loaded</p> 
+              <p>Connect with Owner Account</p> 
               ) : (
               <div>
                 <Table striped bordered hover>
@@ -104,7 +106,7 @@ function App() {
                       <td><h5>{account}</h5></td>
                     </tr>
                     <tr>
-                      <td>Reading Contract:</td>
+                      <td>Contract Address:</td>
                       <td>{contractAddress}</td>
                     </tr>
                     <tr>
@@ -119,12 +121,8 @@ function App() {
                       </td>
                     </tr>
                     <tr>
-                      <td>Total NFTs in Contract:</td>
-                      <td>{total}</td>
-                    </tr>
-                    <tr>
                       <td>Total NFTs Minted:</td>
-                      <td>{totalSupply.toString()}</td>
+                      <td>{totalSupply.toString()}/{total}</td>
                     </tr>
                     <tr>
                       <td>Total ETH Profit:</td>
@@ -132,14 +130,13 @@ function App() {
                     </tr>
                     <tr>
                       <td>ETH on Contract:</td>
-                      <td>{balance}</td>
+                      <td>{ethers.formatEther(balance)} ETH</td>
                     </tr>
                   </tbody>
                 </Table>
                 <Button variant="primary" onClick={handleWithdraw} style={{ marginBottom: '10px' }}>
                   Withdraw Funds
                 </Button>
-
               </div>
               )}
             </Col>
